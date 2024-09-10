@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { SubheaderComponent } from "../subheader/subheader.component";
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [],
+  imports: [SubheaderComponent],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.scss'
 })
