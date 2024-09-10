@@ -1,1 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Inter:opsz,wght@14..32,100..900&family=Poppins:wght@200;300;400;600&display=swap');
 
+$primary-color: #464646;
+$deviating-color: #93A5A2;
+$deviating-bright: #CBDDDA;
+
+$dark-color: darken($primary-color, 10%);
+$darker-color: darken($primary-color, 14%);
+$bright-color: lighten($primary-color, 10%);
+$brighter-color: lighten($primary-color, 30%);
+$brightest-color: lighten($primary-color, 100%);
+
+@mixin align($display, $justify, $align) {
+    display: $display;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin color($bg, $text) {
+    background-color: $bg;
+    color: $text;
+}
+
+@mixin width($width, $max) {
+    width: $width;
+    max-width: $max;
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+body { }
