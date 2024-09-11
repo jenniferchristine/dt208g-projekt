@@ -37,6 +37,7 @@ export class CoursesComponent {
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
+    this.currentPage = 1;
     this.updatePagedCourses();
   }
 
@@ -64,7 +65,6 @@ export class CoursesComponent {
     };
 
     this.filteredCourses.sort(compare);
-    this.updatePagedCourses();
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
   }
 
@@ -80,7 +80,7 @@ export class CoursesComponent {
   }
 
   previousPage() {
-    if (this.currentPage) {
+    if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePagedCourses();
     }
