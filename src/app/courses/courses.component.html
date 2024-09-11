@@ -9,18 +9,22 @@
     <table>
         <thead>
             <tr>
-                <th (click)="sortTable('code')">Kurskod</th> 
-                <th (click)="sortTable('coursename')">Kursnamn</th>
+                <th (click)="sortTable('courseName')">Kursnamn</th>
+                <th (click)="sortTable('points')">Progression</th>
+                <th (click)="sortTable('courseCode')">Kurskod</th> 
+                <th (click)="sortTable('subject')">Progression</th>
                 <th (click)="sortTable('progression')">Progression</th>
                 <th>Kursplan</th>
             </tr>
         </thead>
         <tbody>
             
-            <tr *ngFor="let course of coursePost">
+            <tr *ngFor="let course of filteredCourses">
                 <td>{{ course.courseCode }}</td>
                 <td>{{ course.courseName }}</td>
+                <td>{{ course.points }}</td>
                 <td id="center">{{ course.progression }}</td>
+                <td>{{ course.points }}</td>
                 <td>
                     <a [href]="course.syllabus" target="_blank">Länk till kursplan</a>
                 </td>
