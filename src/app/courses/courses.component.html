@@ -1,5 +1,39 @@
 <app-subheader />
 
-<table>
+<h1>COURSES.HTML</h1>
+
+<div>
+
+    <input type="text" placeholder="Sök kurs...">
+    <!-- <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här..."> -->
     
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Kod</th>
+                <th>Kursnamn</th>
+                <th>Progression</th>
+                <th>Kursplan</th>
+                <!--
+                <th (click)="sortTable('code')">Kurskod</th> 
+                <th (click)="sortTable('coursename')">Kursnamn</th>
+                <th (click)="sortTable('progression')">Progression</th>
+                <th>Kursplan</th>
+                -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of coursePost">
+                <td>{{ course.courseCode }}</td>
+                <td>{{ course.courseName }}</td>
+                <td id="center">{{ course.progression }}</td>
+                <td>
+                    <a [href]="course.syllabus" target="_blank">Länk till kursplan</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    </div>
+
+<!-- https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json -->
