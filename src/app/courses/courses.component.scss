@@ -42,3 +42,8 @@ table {
     .center { text-align: center; }
     .btn-cell { @include align(flex, flex-end, center); padding: 0; }
  }
+
+ .pages {
+    @include align(flex, space-between, center);
+    @include width(1280px, 95%);
+}
