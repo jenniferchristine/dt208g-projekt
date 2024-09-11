@@ -2,12 +2,15 @@
 
 <div class="wrapper">
 
-    <div>
+    <div class="subheader">
+        <p>Hitta kurser</p>
+        <div>
         <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
         <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
             <option value="">Visa alla ämnen</option>
             <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
         </select>
+    </div>
     </div>
 
     <table>
