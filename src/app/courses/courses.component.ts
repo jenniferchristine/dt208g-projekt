@@ -65,7 +65,8 @@ export class CoursesComponent {
       return 0;
     };
 
-    this.pagedCourses.sort(compare);
+    this.filteredCourses.sort(compare);
+    this.currentPage = 1;
     this.updatePagedCourses();
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
   }
