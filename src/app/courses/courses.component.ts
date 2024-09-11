@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
+  /*
 coursePost: Course [] = [];
 
 constructor(private CoursePostService : CourseService) {}
@@ -22,4 +23,5 @@ ngOnInit() {
     this.coursePost = data;
   });
 }
+  */
 }
