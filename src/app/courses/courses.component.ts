@@ -37,6 +37,7 @@ export class CoursesComponent {
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
+
     this.currentPage = 1;
     this.updatePagedCourses();
   }
@@ -64,7 +65,8 @@ export class CoursesComponent {
       return 0;
     };
 
-    this.filteredCourses.sort(compare);
+    this.pagedCourses.sort(compare);
+    this.updatePagedCourses();
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
   }
 
@@ -75,8 +77,10 @@ export class CoursesComponent {
   }
 
   nextPage() {
-    this.currentPage++;
-    this.updatePagedCourses();
+    if (this.currentPage * this.pageSize < this.filteredCourses.length) {
+      this.currentPage++;
+      this.updatePagedCourses();
+    }
   }
 
   previousPage() {
