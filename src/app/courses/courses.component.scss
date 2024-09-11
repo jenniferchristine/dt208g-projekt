@@ -6,17 +6,11 @@
 }
 
 table {
-    @include width(1380px, 95%);
+    @include width(1280px, 95%);
     border-collapse: collapse;
 
-    td { background-color: $brightest-color; width: 100%; }
+    td { background-color: $brightest-color; padding: 0.5em 1em; }
     th { padding: 0.5em 1em; }
-    td { 
-        padding: 0.5em 1em; 
-
-
-        
-    }
 
     th { 
         background-color: $deviating-color; 
@@ -26,11 +20,13 @@ table {
 
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
     a { color: $primary-color; }
-    
+
     button { 
         color: $brightest-color;
         border: none; 
         background-color: $deviating-color;
+        width: 70px;
+        height: 70px;
     }
 
     .even-and-odd:nth-child(odd) {
@@ -38,4 +34,5 @@ table {
     }
 
     .center { text-align: center; }
+    .btn-cell { @include align(flex, flex-end, center); padding: 0; }
  }
