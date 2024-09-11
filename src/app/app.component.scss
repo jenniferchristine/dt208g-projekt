@@ -1,7 +1,7 @@
 @use '../styles.scss' as *;
 
 main { 
-    @include width(1280px, 95%);
     @include align(flex, center, center);
-    background-color: $deviating-color;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
 }

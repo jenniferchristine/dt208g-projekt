@@ -1,3 +1,24 @@
 @use '../../styles.scss' as *;
 
-table { }
+table {
+    border-collapse: collapse;
+
+    td { background-color: $brightest-color; }
+    th { padding: 0.5em 1em; }
+    td { 
+        padding: 0.5em 1em; 
+
+        
+    }
+
+    th { 
+        background-color: $deviating-color; 
+        color: $brightest-color; 
+        text-align: left; 
+    }
+
+    tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
+    a { color: $primary-color; }
+
+    .center { text-align: center; }
+ }

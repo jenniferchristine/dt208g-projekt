@@ -7,10 +7,10 @@ header {
     
     div {
         @include align(flex, flex-start, center);
-        @include width(1280px, 95%);
+        @include width(1000px, 95%); // denna behöver ändras
         gap: 1em; 
 
-        p { font-size: 36px; font-family: "Instrument Sans", sans-serif; }
+        p { font-size: 32px; font-family: "Instrument Sans", sans-serif; }
         span { font-size: 58px; }
     }
 
@@ -29,7 +29,7 @@ header {
 
     li {
         margin-left: 10em;
-        font-size: 28px;
+        font-size: 22px;
         font-family: "Roboto", sans-serif;
         box-sizing: border-box;
 
@@ -43,7 +43,7 @@ header {
 
     .current { 
         background-color: lighten($deviating-bright, 15%);
-        padding: 0.66em 0.7em;
+        padding: 0.72em 0.7em;
         box-sizing: border-box;
     }
 }
