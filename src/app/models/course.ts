@@ -1,5 +1,4 @@
 export class Course {
-    /*
     courseCode!: string;
     subjectCode!: string;
     level!: string;
@@ -9,5 +8,4 @@ export class Course {
     institutionCode!: string;
     subject!: string;
     syllabus!: string;
-    */
 }

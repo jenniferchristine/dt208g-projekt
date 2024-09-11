@@ -13,15 +13,52 @@ import { CommonModule } from '@angular/common';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-  
-coursePost: any [] = [];
+  coursePost: Course[] = [];
+  filteredCourses: Course[] = [];
+  searchText: string = "";
+  sortText: "asc" | "desc" = "asc";
 
-constructor(private CoursePostService : CourseService) {}
+  constructor(private coursePostService: CourseService) { }
 
-ngOnInit() {
-  this.CoursePostService.getPosts().subscribe((data) => {
-    this.coursePost = data;
-  });
-}
+  ngOnInit() {
+    this.coursePostService.getPosts().subscribe((data) => {
+      this.coursePost = data;
+      this.filteredCourses = data;
+    });
+  }
+
+  searchTable() {
+    this.filteredCourses = this.coursePost.filter(course =>
+      course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
+      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
+      course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
+    );
+  }
+
+  sortTable(column: string) {
+    this.filteredCourses.sort((a, b) => {
+      let valueA = a[column as keyof Course];
+      let valueB = b[column as keyof Course];
   
+      if (!isNaN(Number(valueA)) && !isNaN(Number(valueB))) {
+
+        valueA = Number(valueA);
+        valueB = Number(valueB);
+      } else if (typeof valueA === "string" && typeof valueB === "string") {
+
+        valueA = valueA.toLowerCase();
+        valueB = valueB.toLowerCase();
+      }
+  
+      if (valueA < valueB) {
+        return this.sortText === "asc" ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return this.sortText === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  
+    this.sortText = this.sortText === "asc" ? "desc" : "asc";
+  }
 }
