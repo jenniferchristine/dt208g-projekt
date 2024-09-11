@@ -110,4 +110,16 @@ export class CoursesComponent implements OnInit {
       this.updatePagedCourses();
     }
   }
+  
+  get totalCourses() : number {
+    return this.filteredCourses.length;
+  }
+
+  get startIndex() : number {
+    return (this.currentPage - 1) * this.pageSize + 1;
+  }
+
+  get endIndex() : number {
+    return Math.min(this.currentPage * this.pageSize, this.filteredCourses.length);
+  }
 }

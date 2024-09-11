@@ -5,11 +5,11 @@
 <div>
 
     <div>
-    <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
-    <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
-        <option value="">Visa alla ämnen</option>
-        <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
-    </select>
+        <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
+        <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
+            <option value="">Visa alla ämnen</option>
+            <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
+        </select>
     </div>
 
     <table>
@@ -17,7 +17,7 @@
             <tr>
                 <th (click)="sortTable('courseName')">Kursnamn</th>
                 <th (click)="sortTable('points')">Poäng</th>
-                <th (click)="sortTable('courseCode')">Kurskod</th> 
+                <th (click)="sortTable('courseCode')">Kurskod</th>
                 <th (click)="sortTable('subject')">Ämne</th>
                 <th (click)="sortTable('progression')">Progression</th>
                 <th>Kursplan</th>
@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            
+
             <tr *ngFor="let course of pagedCourses">
                 <td>{{ course.courseName }}</td>
                 <td>{{ course.points }}</td>
@@ -39,13 +39,16 @@
                 </td>
                 <button><span class="material-symbols-outlined">add_task</span></button>
             </tr>
-        
+
         </tbody>
     </table>
 
     <div>
-        <button (click)="previousPage()" [disabled]="currentPage === 1">Föregående</button>
-        <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">Nästa</button>
+        <div>
+            <button (click)="previousPage()" [disabled]="currentPage === 1">Föregående</button>
+            <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">Nästa</button>
+        </div>
+        <p>{{ startIndex }} - {{ endIndex}} av {{ totalCourses }}</p>
     </div>
-    
-    </div>
+
+</div>
