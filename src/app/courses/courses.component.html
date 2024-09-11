@@ -10,9 +10,9 @@
         <thead>
             <tr>
                 <th (click)="sortTable('courseName')">Kursnamn</th>
-                <th (click)="sortTable('points')">Progression</th>
+                <th (click)="sortTable('points')">Poäng</th>
                 <th (click)="sortTable('courseCode')">Kurskod</th> 
-                <th (click)="sortTable('subject')">Progression</th>
+                <th (click)="sortTable('subject')">Ämne</th>
                 <th (click)="sortTable('progression')">Progression</th>
                 <th>Kursplan</th>
             </tr>
@@ -20,11 +20,11 @@
         <tbody>
             
             <tr *ngFor="let course of pagedCourses">
-                <td>{{ course.courseCode }}</td>
                 <td>{{ course.courseName }}</td>
                 <td>{{ course.points }}</td>
+                <td>{{ course.courseCode }}</td>
+                <td>{{ course.subject }}</td>
                 <td id="center">{{ course.progression }}</td>
-                <td>{{ course.points }}</td>
                 <td>
                     <a [href]="course.syllabus" target="_blank">Länk till kursplan</a>
                 </td>
