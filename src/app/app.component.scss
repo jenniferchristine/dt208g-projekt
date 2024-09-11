@@ -1,3 +1,7 @@
 @use '../styles.scss' as *;
 
-main { }
+main { 
+    @include width(1280px, 95%);
+    @include align(flex, center, center);
+    background-color: $deviating-color;
+}

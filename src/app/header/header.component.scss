@@ -1,3 +1,49 @@
 @use '../../styles.scss' as *;
 
-header { }
+header { 
+    @include align(flex, center, center);
+    width: 100%;
+    flex-direction: column;
+    
+    div {
+        @include align(flex, flex-start, center);
+        @include width(1280px, 95%);
+        gap: 1em; 
+
+        p { font-size: 36px; font-family: "Instrument Sans", sans-serif; }
+        span { font-size: 58px; }
+    }
+
+    nav {
+        @include align(flex, center, center);
+        width: 100%;
+        border-top: 2px solid lighten($deviating-bright, 15%);
+     }
+
+    ul {
+        @include align(flex, center, center);
+        @include width(1280px, 95%);
+        list-style: none;
+        padding: 0; 
+     }
+
+    li {
+        margin-left: 10em;
+        font-size: 28px;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+
+        &:first-child { margin-left: 0; }
+     }
+
+    a { 
+        text-decoration: none;
+        color: lighten($primary-color, 15%);
+    }
+
+    .current { 
+        background-color: lighten($deviating-bright, 15%);
+        padding: 0.66em 0.7em;
+        box-sizing: border-box;
+    }
+}
