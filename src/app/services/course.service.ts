@@ -10,7 +10,7 @@ export class CourseService {
   private url: string = "https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json";
   constructor(private http: HttpClient) { }
 
-  getPosts() : Observable<Course[]> {
-    return this.http.get<Course[]>(this.url);
+  getPosts() : Observable<any[]> {
+    return this.http.get<any[]>(this.url);
   }
 }
