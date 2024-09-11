@@ -11,7 +11,11 @@ table {
 
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
 
-    td { background-color: $brightest-color; padding: 0.5em 1em; }
+    td { 
+        background-color: $brightest-color; 
+        padding: 0.5em 1em; 
+        border-bottom: 0.1px solid rgba(49, 49, 49, 0.027);
+    }
     th { padding: 0.5em 1em; }
     th { 
         background-color: $deviating-color; 
@@ -46,4 +50,24 @@ table {
  .pages {
     @include align(flex, space-between, center);
     @include width(1280px, 95%);
+}
+
+.pages > div {
+    @include align(flex, space-between, center);
+    margin-top: 1em;
+
+    p { margin-right: 1em;}
+
+    select {
+        border: none;
+        background-color: rgba(49, 49, 49, 0.027);
+        padding: 0.5em;
+        font-family: "Poppins", sans-serif;
+    }
+
+    button {
+        border: none;
+        background: none;
+        padding: 0;
+    }
 }

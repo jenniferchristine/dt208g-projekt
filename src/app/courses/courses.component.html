@@ -46,16 +46,23 @@
     </table>
 
     <div class="pages">
-        <select [(ngModel)]="pageSize" (change)="updatePagedCourses()">
-            <option [value]="10">10 resultat per sida</option>
-            <option [value]="20">20 resultat per sida</option>
-            <option [value]="50">50 resultat per sida</option>
-        </select>
         <div>
-            <button (click)="previousPage()" [disabled]="currentPage === 1">Föregående</button>
-            <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">Nästa</button>
+            <p>Antal per sida</p>
+            <select [(ngModel)]="pageSize" (change)="updatePagedCourses()">
+                <option [value]="10">10</option>
+                <option [value]="20">20</option>
+                <option [value]="50">50</option>
+            </select>
         </div>
-        <p>{{ startIndex }} - {{ endIndex}} av {{ totalCourses }}</p>
+        <div>
+            <p>{{ startIndex }} - {{ endIndex}} av {{ totalCourses }}</p>
+            <button (click)="previousPage()" [disabled]="currentPage === 1">
+                <span class="material-symbols-outlined">keyboard_arrow_left</span>
+            </button>
+            <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">
+                <span class="material-symbols-outlined">keyboard_arrow_right</span>
+            </button>
+        </div>
     </div>
 
 </div>
