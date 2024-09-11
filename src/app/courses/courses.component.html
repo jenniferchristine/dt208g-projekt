@@ -1,8 +1,6 @@
 <app-subheader />
 
-<h1>COURSES.HTML</h1>
-
-<div>
+<div class="wrapper">
 
     <div>
         <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
@@ -26,7 +24,7 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let course of pagedCourses">
+            <tr *ngFor="let course of pagedCourses; let i = index">
                 <td>{{ course.courseName }}</td>
                 <td>{{ course.points }}</td>
                 <td>{{ course.courseCode }}</td>
@@ -37,13 +35,15 @@
                         <span class="material-symbols-outlined">link</span>
                     </a>
                 </td>
-                <button><span class="material-symbols-outlined">add_task</span></button>
+                <button [ngClass]="{'even-and-odd': i % 2 === 0}">
+                    <span class="material-symbols-outlined">add_task</span>
+                </button>
             </tr>
 
         </tbody>
     </table>
 
-    <div>
+    <div class="pages">
         <div>
             <button (click)="previousPage()" [disabled]="currentPage === 1">Föregående</button>
             <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">Nästa</button>

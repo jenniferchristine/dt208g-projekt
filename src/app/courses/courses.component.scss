@@ -1,12 +1,19 @@
 @use '../../styles.scss' as *;
 
+.wrapper {
+    @include align(flex, center, center);
+    flex-direction: column;
+}
+
 table {
+    @include width(1380px, 95%);
     border-collapse: collapse;
 
-    td { background-color: $brightest-color; }
+    td { background-color: $brightest-color; width: 100%; }
     th { padding: 0.5em 1em; }
     td { 
         padding: 0.5em 1em; 
+
 
         
     }
@@ -19,6 +26,16 @@ table {
 
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
     a { color: $primary-color; }
+    
+    button { 
+        color: $brightest-color;
+        border: none; 
+        background-color: $deviating-color;
+    }
+
+    .even-and-odd:nth-child(odd) {
+        background-color: $deviating-bright;
+    }
 
     .center { text-align: center; }
  }
