@@ -4,22 +4,15 @@
 
 <div>
 
-    <input type="text" placeholder="Sök kurs...">
-    <!-- <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här..."> -->
+    <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
     
     <table>
         <thead>
             <tr>
-                <th>Kod</th>
-                <th>Kursnamn</th>
-                <th>Progression</th>
-                <th>Kursplan</th>
-                <!--
                 <th (click)="sortTable('code')">Kurskod</th> 
                 <th (click)="sortTable('coursename')">Kursnamn</th>
                 <th (click)="sortTable('progression')">Progression</th>
                 <th>Kursplan</th>
-                -->
             </tr>
         </thead>
         <tbody>
