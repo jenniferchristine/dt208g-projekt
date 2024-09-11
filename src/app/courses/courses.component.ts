@@ -20,6 +20,8 @@ export class CoursesComponent implements OnInit {
   sortText: "asc" | "desc" = "asc";
   currentPage: number = 1;
   pageSize: number = 10;
+  uniqueSubjects: string [] = [];
+  selectedSubjects: string = "";
 
   constructor(private coursePostService: CourseService) { }
 
