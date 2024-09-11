@@ -37,19 +37,19 @@ export class CoursesComponent {
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
+    this.updatePagedCourses();
   }
 
   sortTable(column: string) {
-    this.filteredCourses.sort((a, b) => {
+    const compare = (a: Course, b: Course): number => {
       let valueA = a[column as keyof Course];
       let valueB = b[column as keyof Course];
   
       if (!isNaN(Number(valueA)) && !isNaN(Number(valueB))) {
-
         valueA = Number(valueA);
         valueB = Number(valueB);
-      } else if (typeof valueA === "string" && typeof valueB === "string") {
 
+      } else if (typeof valueA === "string" && typeof valueB === "string") {
         valueA = valueA.toLowerCase();
         valueB = valueB.toLowerCase();
       }
@@ -61,7 +61,9 @@ export class CoursesComponent {
         return this.sortText === "asc" ? 1 : -1;
       }
       return 0;
-    });
+    };
+
+    this.filteredCourses.sort(compare);
     this.updatePagedCourses();
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
   }
