@@ -6,7 +6,10 @@
 
     <div>
     <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
-    <!-- HÄR SKA FÄLT FÖR ATT VISA ÄMNEN VARA -->
+    <select [(ngModel)]="selectedSubjects" (change)="filterBySubject">
+        <option value="">Visa alla ämnen</option>
+        <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
+    </select>
     </div>
 
     <table>

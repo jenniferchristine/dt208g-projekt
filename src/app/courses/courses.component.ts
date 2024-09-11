@@ -33,6 +33,8 @@ export class CoursesComponent implements OnInit {
     this.coursePostService.getPosts().subscribe((data: Course[]) => {
       this.coursePost = data;
       this.filteredCourses = data;
+
+      this.uniqueSubjects = Array.from(new Set(data.map(course => course.subject)));
       this.updatePagedCourses();
     });
   }
@@ -46,6 +48,16 @@ export class CoursesComponent implements OnInit {
 
     this.currentPage = 1;
     this.updatePagedCourses();
+  }
+
+  filterBySubject() : void {
+    if (this.selectedSubjects) {
+      this.filteredCourses= this.coursePost.filter(course =>
+        course.subject === this.selectedSubjects
+      );
+    } else {
+      this.filteredCourses = this.coursePost;
+    }
   }
 
   sortTable(column: keyof Course) : void {
