@@ -32,5 +32,10 @@
         
         </tbody>
     </table>
+
+    <div>
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Föregående</button>
+        <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">Nästa</button>
+    </div>
     
     </div>

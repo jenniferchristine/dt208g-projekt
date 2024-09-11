@@ -15,8 +15,11 @@ import { CommonModule } from '@angular/common';
 export class CoursesComponent {
   coursePost: Course[] = [];
   filteredCourses: Course[] = [];
+  pagedCourses: Course[] = [];
   searchText: string = "";
   sortText: "asc" | "desc" = "asc";
+  currentPage: number = 1;
+  pageSize: number = 10;
 
   constructor(private coursePostService: CourseService) { }
 
@@ -24,6 +27,7 @@ export class CoursesComponent {
     this.coursePostService.getPosts().subscribe((data) => {
       this.coursePost = data;
       this.filteredCourses = data;
+      this.updatePagedCourses();
     });
   }
 
@@ -58,7 +62,25 @@ export class CoursesComponent {
       }
       return 0;
     });
-  
+    this.updatePagedCourses();
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
+  }
+
+  updatePagedCourses() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.updatePagedCourses();
+  }
+
+  previousPage() {
+    if (this.currentPage) {
+      this.currentPage--;
+      this.updatePagedCourses();
+    }
   }
 }
