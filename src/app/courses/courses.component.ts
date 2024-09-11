@@ -58,6 +58,8 @@ export class CoursesComponent implements OnInit {
     } else {
       this.filteredCourses = this.coursePost;
     }
+    this.currentPage = 1;
+    this.updatePagedCourses();
   }
 
   sortTable(column: keyof Course) : void {
