@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SubheaderComponent } from "../subheader/subheader.component";
 import { FormsModule } from '@angular/forms';
 import { CourseService } from '../services/course.service';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   coursePost: Course[] = [];
   filteredCourses: Course[] = [];
   pagedCourses: Course[] = [];
@@ -23,15 +23,19 @@ export class CoursesComponent {
 
   constructor(private coursePostService: CourseService) { }
 
-  ngOnInit() {
-    this.coursePostService.getPosts().subscribe((data) => {
+  ngOnInit() : void {
+    this.loadCourses();
+  }
+
+  private loadCourses() : void {
+    this.coursePostService.getPosts().subscribe((data: Course[]) => {
       this.coursePost = data;
       this.filteredCourses = data;
       this.updatePagedCourses();
     });
   }
 
-  searchTable() {
+  searchTable() : void {
     this.filteredCourses = this.coursePost.filter(course =>
       course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
@@ -42,10 +46,10 @@ export class CoursesComponent {
     this.updatePagedCourses();
   }
 
-  sortTable(column: string) {
+  sortTable(column: keyof Course) : void {
     const compare = (a: Course, b: Course): number => {
-      let valueA = a[column as keyof Course];
-      let valueB = b[column as keyof Course];
+      let valueA: string | number = a[column];
+      let valueB: string | number = b[column];
   
       if (!isNaN(Number(valueA)) && !isNaN(Number(valueB))) {
         valueA = Number(valueA);
@@ -71,20 +75,20 @@ export class CoursesComponent {
     this.sortText = this.sortText === "asc" ? "desc" : "asc";
   }
 
-  updatePagedCourses() {
+  updatePagedCourses() : void {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex);
   }
 
-  nextPage() {
+  nextPage() : void {
     if (this.currentPage * this.pageSize < this.filteredCourses.length) {
       this.currentPage++;
       this.updatePagedCourses();
     }
   }
 
-  previousPage() {
+  previousPage() : void {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePagedCourses();
