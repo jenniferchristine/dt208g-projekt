@@ -148,6 +148,13 @@ export class CoursesComponent implements OnInit {
     this.coursePost = this.coursePost.filter((course: Course) => course.courseCode !== courseId);
     this.filteredCourses = this.coursePost;
     this.updatePagedCourses();
+
+    this.confirmation = `
+    Kursen är raderad`;
+
+    setTimeout(() => {
+      this.confirmation = "";
+    }, 3000);
   }
 
   onClick(course: Course) : void {
