@@ -24,6 +24,7 @@ export class CoursesComponent implements OnInit {
   pageSize: number = 10;
   uniqueSubjects: string [] = [];
   selectedSubjects: string = "";
+  confirmation: string = "";
 
   constructor(private coursePostService: CourseService) { }
 
@@ -129,6 +130,13 @@ export class CoursesComponent implements OnInit {
     let courses = savedCourses ? JSON.parse(savedCourses) : [];
     courses.push(course);
     localStorage.setItem("savedCourses", JSON.stringify(courses));
+
+    this.confirmation = `
+    <p>Kurs "$course.courseName" har lagts till!</p>`;
+
+    setTimeout(() => {
+      this.confirmation = "";
+    }, 3000);
   }
 
   removeFromLocalStorage(courseId: string) : void {

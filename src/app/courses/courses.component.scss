@@ -20,6 +20,13 @@
     input, select { width: 100%;}
 }
 
+.confirmation {
+    background-color: black;
+    color: white; 
+    padding: 2em; 
+    font-size: 22px;
+}
+
 table {
     @include width(1280px, 95%);
     border-collapse: collapse;
