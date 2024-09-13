@@ -3,12 +3,12 @@
     <div class="subheader">
         <p>Hitta kurser</p>
         <div>
-        <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
-        <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
-            <option value="">Visa alla ämnen</option>
-            <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
-        </select>
-    </div>
+            <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
+            <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
+                <option value="">Visa alla ämnen</option>
+                <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
+            </select>
+        </div>
     </div>
 
     <table>
@@ -39,7 +39,7 @@
                 <td class="btn-cell">
                     <button [ngClass]="{'odd-btns': i % 2 === 0}" (click)="onClick(course)">
                         <span class="material-symbols-outlined">
-                        {{ actionType === 'add' ? "add_task" : 'delete' }}
+                            {{ actionType === 'add' ? "add_task" : 'delete' }}
                         </span>
                     </button>
                 </td>
@@ -68,8 +68,8 @@
         </div>
     </div>
 
-</div>
-
-<div *ngIf="confirmation" class="confirmation">
-    {{ confirmation }}
+    <div *ngIf="confirmation" class="confirmation">
+        {{ confirmation }}
+    </div>
+    
 </div>

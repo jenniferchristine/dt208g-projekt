@@ -132,7 +132,7 @@ export class CoursesComponent implements OnInit {
     localStorage.setItem("savedCourses", JSON.stringify(courses));
 
     this.confirmation = `
-    <p>Kurs "$course.courseName" har lagts till!</p>`;
+    Kurs ${course.courseName} har lagts till!`;
 
     setTimeout(() => {
       this.confirmation = "";
