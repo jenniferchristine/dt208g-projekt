@@ -37,3 +37,22 @@ footer {
         font-size: 10px;
     }
  }
+
+ @media (max-width: 925px) {
+    .content-holder { display: block!important;}
+
+    .column { 
+        margin-top: 3em;
+        &:first-child { margin-top: 0!important; }
+    }
+}
+
+@media (max-width: 600px) {
+    .column {
+        font-size: 12px!important;
+        div > p { font-size: 11px!important; }
+    }
+
+    footer { margin-top: 2em!important; }
+    .content-holder { margin-bottom: 0!important;}
+}

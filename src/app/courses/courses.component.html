@@ -15,10 +15,10 @@
         <thead>
             <tr>
                 <th (click)="sortTable('courseName')">Kursnamn</th>
-                <th (click)="sortTable('points')">Poäng</th>
+                <th class="hide-if410" (click)="sortTable('points')">Poäng</th>
                 <th (click)="sortTable('courseCode')">Kurskod</th>
-                <th (click)="sortTable('subject')">Ämne</th>
-                <th (click)="sortTable('progression')">Progression</th>
+                <th class="hide-if583" (click)="sortTable('subject')">Ämne</th>
+                <th class="hide-if410" (click)="sortTable('progression')">Progression</th>
                 <th>Kursplan</th>
                 <th></th>
             </tr>
@@ -27,10 +27,10 @@
 
             <tr *ngFor="let course of pagedCourses; let i = index">
                 <td>{{ course.courseName }}</td>
-                <td>{{ course.points }}</td>
+                <td class="hide-if410">{{ course.points }}</td>
                 <td>{{ course.courseCode }}</td>
-                <td>{{ course.subject }}</td>
-                <td class="center">{{ course.progression }}</td>
+                <td class="hide-if583">{{ course.subject }}</td>
+                <td id="center" class="hide-if410">{{ course.progression }}</td>
                 <td>
                     <a [href]="course.syllabus" target="_blank">
                         <span class="material-symbols-outlined">link</span>
@@ -49,7 +49,7 @@
     </table>
 
     <div class="pages">
-        <div>
+        <div class="pages-option">
             <p>Antal per sida</p>
             <select [(ngModel)]="pageSize" (change)="updatePagedCourses()">
                 <option [value]="10">10</option>

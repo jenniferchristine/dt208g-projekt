@@ -23,6 +23,7 @@ header {
         @include align(flex, center, center);
         width: 100%;
         border-top: 2px solid lighten($deviating-bright, 15%);
+        
      }
 
     ul {
@@ -52,8 +53,11 @@ header {
 }
 
 @media (max-width: 800px) {
-    nav { display: none!important;
+    nav { 
+        display: none!important;
+        
         &.open { 
+            overflow: auto; 
             display: block!important; 
 
             ul {
@@ -62,10 +66,31 @@ header {
             }
 
             li {
-                margin-top: 50px;
+                margin: 50px 0 0 0!important;
+                font-size: 16px;
+
+                &:first-child {margin:0!important;}
             }
         }
     }
 
     .menu { display: flex!important; }
+
+    header {margin: 0!important;}
+    .logo {
+        p { font-size: 20px!important; }
+        span { font-size: 40px!important;}
+    }
+}
+
+@media (max-width: 365px) {
+
+}
+
+@media (max-width: 300px) {
+    .logo {
+        gap:0.5em!important;
+        p { font-size: 18px!important; }
+        span { font-size: 36px!important;}
+    }
 }

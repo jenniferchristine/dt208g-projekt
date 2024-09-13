@@ -44,7 +44,9 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    overflow-x: auto!important;
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
+    .hide-if410, .hide-if583 { display: table-cell; }
 
     td { 
         background-color: $brightest-color; 
@@ -78,7 +80,7 @@ table {
         &:hover { background-color: darken($deviating-bright, 8%); }
     }
 
-    .center { text-align: center; }
+    #center { text-align: center; }
     .btn-cell { @include align(flex, flex-end, center); padding: 0; }
  }
 
@@ -107,6 +109,39 @@ table {
     }
 }
 
-@media (max-width: 600px) {
-
+@media (max-width: 925px) {
+    table {
+        font-size: 14px;
+        td, th { padding: 0 0.5em!important;  }
+    }
 }
+
+@media (max-width: 700px) {
+    .subheader { 
+        input, select { width: 100%!important; }
+        padding: 1em 1em 2em 1em!important; 
+    }
+    .subheader div {
+        gap: 1em!important;
+        flex-direction: column!important;
+    }
+    table {
+        font-size: 12px;
+        td, th { padding: 0!important;  }
+    }
+}
+
+@media (max-width: 583px) {
+    .pages { justify-content: center!important; }
+    .hide-if583, .pages-option { display: none!important; }
+    h1 { font-size: 18px; }
+    .subheader { margin-bottom: 1.5em!important;}
+
+    input[type="text"], select {
+        font-size: 14px!important;
+    }
+
+    table { button { width: 38px!important; height: 38px!important; }}
+}
+
+@media (max-width: 410px) { .hide-if410 { display: none!important; }}
