@@ -7,7 +7,7 @@ header {
     box-sizing: border-box;
     
     .header-holder {
-        @include width(1280px, 98%); // denna behöver ändras
+        @include width(1280px, 98%);
         @include align(flex, space-between, center);
     }
 
@@ -40,14 +40,21 @@ header {
         &:first-child { margin-left: 0; }
      }
 
-    a { 
-        text-decoration: none;
-        color: lighten($primary-color, 15%);
-    }
+    a { text-decoration: none; color: lighten($primary-color, 15%); }
 
     .current { 
         background-color: lighten($deviating-bright, 15%);
         padding: 0.72em 0.7em;
         box-sizing: border-box;
     }
+
+    .menu { display: none; }
+}
+
+@media (max-width: 800px) {
+    nav { display: none;
+        &.open { display: block; }
+    }
+
+    .menu { display: block; }
 }
