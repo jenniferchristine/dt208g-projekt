@@ -4,10 +4,11 @@ header {
     @include align(flex, center, center);
     width: 100%;
     flex-direction: column;
+    margin-top: 2em;
     
     div {
         @include align(flex, flex-start, center);
-        @include width(1000px, 95%); // denna behöver ändras
+        @include width(1280px, 95%); // denna behöver ändras
         gap: 1em; 
 
         p { font-size: 32px; font-family: "Instrument Sans", sans-serif; }

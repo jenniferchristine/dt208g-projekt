@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubheaderComponent } from './subheader.component';
+import { FindCoursesComponent } from './find-courses.component';
 
-describe('SubheaderComponent', () => {
-  let component: SubheaderComponent;
-  let fixture: ComponentFixture<SubheaderComponent>;
+describe('FindCoursesComponent', () => {
+  let component: FindCoursesComponent;
+  let fixture: ComponentFixture<FindCoursesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubheaderComponent]
+      imports: [FindCoursesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubheaderComponent);
+    fixture = TestBed.createComponent(FindCoursesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
