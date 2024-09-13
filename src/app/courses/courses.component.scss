@@ -3,15 +3,16 @@
 .wrapper {
     @include align(flex, center, center);
     flex-direction: column;
+    @include width(1280px, 100%);
 }
 
 .subheader {
-    @include width(1280px, 95%);
     background-color: $deviating-bright;
     width: 100%;
     box-sizing: border-box;
     padding: 1em 2em 2em 2em;
     margin-bottom: 3em;
+    border: 1px solid black;
 
     div { @include align(flex, center, center); gap: 3em; }
     input, select { width: 100%; height: 40px; box-sizing: border-box; border: none; }
@@ -45,9 +46,8 @@
 }
 
 table {
-    @include width(1280px, 95%);
     border-collapse: collapse;
-
+    width: 100%;
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
 
     td { 

@@ -2,17 +2,21 @@
 
 header { 
     @include align(flex, center, center);
-    width: 100%;
     flex-direction: column;
     margin-top: 2em;
+    box-sizing: border-box;
     
-    div {
+    .header-holder {
+        @include width(1280px, 98%); // denna behöver ändras
+        @include align(flex, space-between, center);
+    }
+
+    .logo {
         @include align(flex, flex-start, center);
-        @include width(1280px, 95%); // denna behöver ändras
         gap: 1em; 
 
-        p { font-size: 32px; font-family: "Instrument Sans", sans-serif; }
-        span { font-size: 58px; }
+        p { font-size: 32px; font-family: "Instrument Sans", sans-serif; box-sizing: border-box;}
+        span { font-size: 58px; box-sizing: border-box;}
     }
 
     nav {
@@ -23,7 +27,7 @@ header {
 
     ul {
         @include align(flex, center, center);
-        @include width(1280px, 95%);
+        @include width(1280px, 98%);
         list-style: none;
         padding: 0; 
      }
@@ -32,7 +36,6 @@ header {
         margin-left: 10em;
         font-size: 22px;
         font-family: "Roboto", sans-serif;
-        box-sizing: border-box;
 
         &:first-child { margin-left: 0; }
      }

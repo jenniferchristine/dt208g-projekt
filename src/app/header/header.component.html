@@ -1,9 +1,17 @@
 <header>
-    <div>
-        <span class="material-symbols-outlined">school</span>
-        <p>LYNX AKADEMI</p>
+    <div class="header-holder">
+        <div class="logo">
+            <span class="material-symbols-outlined">school</span>
+            <p>LYNX AKADEMI</p>
+        </div>
+        <div>
+            <div class="menu" (click)="toggleMenu()">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
     </div>
-    <nav>
+
+    <nav [ngClass]="{ 'open': isMenuOpen }">
         <ul>
             <li><a routerLink="/home" routerLinkActive="current">
                     Startsida
