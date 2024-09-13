@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CourseService } from '../services/course.service';
 import { Course } from '../models/course'
@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent implements OnInit {
+  //@Input() actionType: "add" | "remove";
+  //Output() courseAction = new EventEmitter<string>();
+
   coursePost: Course[] = [];
   filteredCourses: Course[] = [];
   pagedCourses: Course[] = [];
@@ -109,6 +112,11 @@ export class CoursesComponent implements OnInit {
       this.updatePagedCourses();
     }
   }
+
+  /*
+  onClick(courseId: string) {
+    this.courseAction.emit(courseId);
+  }*/
   
   get totalCourses() : number {
     return this.filteredCourses.length;
