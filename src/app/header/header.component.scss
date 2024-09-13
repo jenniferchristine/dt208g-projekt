@@ -52,9 +52,20 @@ header {
 }
 
 @media (max-width: 800px) {
-    nav { display: none;
-        &.open { display: block; }
+    nav { display: none!important;
+        &.open { 
+            display: block!important; 
+
+            ul {
+                display: block!important;
+                text-align: right!important;
+            }
+
+            li {
+                margin-top: 50px;
+            }
+        }
     }
 
-    .menu { display: block; }
+    .menu { display: flex!important; }
 }

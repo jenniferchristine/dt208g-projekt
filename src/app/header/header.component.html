@@ -5,13 +5,13 @@
             <p>LYNX AKADEMI</p>
         </div>
         <div>
-            <div class="menu" (click)="toggleMenu()">
+            <div class="menu" (click)="toggleMenu()"> <!-- click event för att skicka till funktion -->
                 <span class="material-symbols-outlined">menu</span>
             </div>
         </div>
     </div>
 
-    <nav [ngClass]="{ 'open': isMenuOpen }">
+    <nav [ngClass]="{ 'open': isMenuOpen }"> <!-- ger klass open när öppen -->
         <ul>
             <li><a routerLink="/home" routerLinkActive="current">
                     Startsida
