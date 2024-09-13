@@ -52,7 +52,8 @@ export class CoursesComponent implements OnInit {
   private loadLocalStorage() : void {
     const savedCourses = localStorage.getItem("savedCourses");
     this.coursePost = savedCourses ? JSON.parse(savedCourses) : [];
-    this.filteredCourses = this.coursePost;
+
+    this.uniqueSubjects = Array.from(new Set(this.coursePost.map((course: Course) => course.subject)));
     this.updatePagedCourses();
   }
 
