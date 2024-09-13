@@ -117,8 +117,13 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  onClick(courseId: string) {
-    this.courseAction.emit(courseId);
+  onClick(course: Course) : void {
+    if (this.actionType === 'add') {
+      this.saveToLocalStorage(course);
+    } else if (this.actionType === 'delete') {
+      this.removeFromLocalStorage(course.courseCode);
+    }
+    this.courseAction.emit(course.courseCode);
   }
   
   get totalCourses() : number {
