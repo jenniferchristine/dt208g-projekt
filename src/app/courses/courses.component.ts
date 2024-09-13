@@ -45,6 +45,13 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  private loadLocalStorage() : void {
+    const savedCourses = localStorage.getItem("savedCourses");
+    this.coursePost = savedCourses ? JSON.parse(savedCourses) : [];
+    this.filteredCourses = this.coursePost;
+    this.updatePagedCourses();
+  }
+
   searchTable() : void {
     this.filteredCourses = this.coursePost.filter(course =>
       course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
