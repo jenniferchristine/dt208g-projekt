@@ -1,7 +1,7 @@
 <div class="wrapper">
 
     <div class="subheader">
-        <p>Hitta kurser</p>
+        <h1>Hitta kurs</h1>
         <div>
             <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
             <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
@@ -71,5 +71,5 @@
     <div *ngIf="confirmation" class="confirmation">
         {{ confirmation }}
     </div>
-    
+
 </div>
