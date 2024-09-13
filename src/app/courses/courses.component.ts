@@ -25,13 +25,16 @@ export class CoursesComponent implements OnInit {
   uniqueSubjects: string [] = [];
   selectedSubjects: string = "";
   confirmation: string = "";
+  heading: string = "";
 
   constructor(private coursePostService: CourseService) { }
 
   ngOnInit() : void {
     if (this.actionType === 'add') {
+      this.heading = "Hitta kurser"
       this.loadAPIResult();
     } else if (this.actionType === 'delete') {
+      this.heading = "Mitt ramschema";
       this.loadLocalStorage();
     }
   }

@@ -1,7 +1,7 @@
 <div class="wrapper">
 
     <div class="subheader">
-        <h1>Hitta kurs</h1>
+        <h1>{{ heading }}</h1>
         <div>
             <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
             <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
