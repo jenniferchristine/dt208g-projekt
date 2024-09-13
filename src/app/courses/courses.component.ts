@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CourseService } from '../services/course.service';
-import { Course } from '../models/course'
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'; // angular-moduler och parametrar
+import { FormsModule } from '@angular/forms'; // formulärhantering, ng
+import { CourseService } from '../services/course.service'; // importerar tjänst
+import { Course } from '../models/course' // importerar modell av interface
+import { CommonModule } from '@angular/common'; // ngIf, ngFor
 
 @Component({
   selector: 'app-courses',
@@ -12,66 +12,72 @@ import { CommonModule } from '@angular/common';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent implements OnInit {
-  @Input() actionType: 'add' | 'delete' = 'add';
-  @Output() courseAction = new EventEmitter<string>();
+  @Input() actionType: 'add' | 'delete' = 'add'; // skiljer på sidor/knappar
+  @Output() courseAction = new EventEmitter<string>(); // emitterar kurskod
 
-  coursePost: Course[] = [];
+  coursePost: Course[] = []; // lagrar kurser
   filteredCourses: Course[] = [];
   pagedCourses: Course[] = [];
   searchText: string = "";
-  sortText: "asc" | "desc" = "asc";
+  sortText: "asc" | "desc" = "asc"; // bestämmer sortering
   currentPage: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 10; // hur många poster visas per sida
   uniqueSubjects: string [] = [];
   selectedSubjects: string = "";
-  confirmation: string = "";
+  confirmation: string = ""; // bekräftelsemeddelande
   heading: string = "";
 
-  constructor(private coursePostService: CourseService) { }
+  constructor(private coursePostService: CourseService) { } // injektion av service
 
+  /* bestämmer hur och när komponent ska initaliseras */
   ngOnInit() : void {
-    if (this.actionType === 'add') {
+    if (this.actionType === 'add') { // actiontype för kurs-sida
       this.heading = "Hitta kurser"
       this.loadAPIResult();
-    } else if (this.actionType === 'delete') {
+    } else if (this.actionType === 'delete') { // actiontype för ramschema-sida
       this.heading = "Mitt ramschema";
       this.loadLocalStorage();
     }
   }
 
+  /* privat metod för att hämta data från api */
   private loadAPIResult() : void {
-    this.coursePostService.getPosts().subscribe((data: Course[]) => {
-      this.coursePost = data;
-      this.filteredCourses = data;
+    this.coursePostService.getPosts().subscribe((data: Course[]) => { // getpost returnerar observable
+      this.coursePost = data; // lagrar kurser
+      this.filteredCourses = data; // tilldelar filtrerad kursdata
 
-      this.uniqueSubjects = Array.from(new Set(data.map(course => course.subject)));
-      this.updatePagedCourses();
+      this.uniqueSubjects = Array.from(new Set(data.map(course => course.subject))); // array för ämnen
+      this.updatePagedCourses(); // uppdaterar
     });
   }
 
+  /* privat metod för att hämta data från localstorage */
   private loadLocalStorage() : void {
     const savedCourses = localStorage.getItem("savedCourses");
     this.coursePost = savedCourses ? JSON.parse(savedCourses) : [];
+    this.filteredCourses = this.coursePost;
 
     this.uniqueSubjects = Array.from(new Set(this.coursePost.map((course: Course) => course.subject)));
     this.updatePagedCourses();
   }
 
+  /* filtrerar kurser utifrån söktext */
   searchTable() : void {
-    this.filteredCourses = this.coursePost.filter(course =>
-      course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
-      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
+    this.filteredCourses = this.coursePost.filter(course => // ny array för de som uppfyller villkor
+      course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // kontroll om name innehåller söktext
+      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // ignorerar stora små bokstäver
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
 
-    this.currentPage = 1;
+    this.currentPage = 1; // nollställer aktuell sida till 1
     this.updatePagedCourses();
   }
 
+  /* filtrerar utifrån ämne */
   filterBySubject() : void {
     if (this.selectedSubjects) {
-      this.filteredCourses= this.coursePost.filter(course =>
-        course.subject === this.selectedSubjects
+      this.filteredCourses= this.coursePost.filter(course => // filtermetod som skapar ny array med de som matchar ämne
+        course.subject === this.selectedSubjects // kontroll
       );
     } else {
       this.filteredCourses = this.coursePost;
