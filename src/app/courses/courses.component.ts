@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent implements OnInit {
-  //@Input() actionType: "add" | "remove";
-  //Output() courseAction = new EventEmitter<string>();
+  @Input() actionType: 'add' | 'delete' = 'add';
+  @Output() courseAction = new EventEmitter<string>();
 
   coursePost: Course[] = [];
   filteredCourses: Course[] = [];
@@ -113,10 +113,9 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  /*
   onClick(courseId: string) {
     this.courseAction.emit(courseId);
-  }*/
+  }
   
   get totalCourses() : number {
     return this.filteredCourses.length;
