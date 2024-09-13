@@ -124,6 +124,13 @@ export class CoursesComponent implements OnInit {
     }
   }
 
+  saveToLocalStorage(course: Course) : void {
+    let savedCourses = localStorage.getItem("savedCourses");
+    let courses = savedCourses ? JSON.parse(savedCourses) : [];
+    courses.push(course);
+    localStorage.setItem("savedCourses", JSON.stringify(courses));
+  }
+
   onClick(course: Course) : void {
     if (this.actionType === 'add') {
       this.saveToLocalStorage(course);
