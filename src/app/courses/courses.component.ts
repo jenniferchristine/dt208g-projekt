@@ -136,6 +136,10 @@ export class CoursesComponent implements OnInit {
     let courses = savedCourses ? JSON.parse(savedCourses) : [];
     courses = courses.filter((course: Course) => course.courseCode !== courseId );
     localStorage.setItem("savedCourses", JSON.stringify(courses));
+
+    this.coursePost = this.coursePost.filter((course: Course) => course.courseCode !== courseId);
+    this.filteredCourses = this.coursePost;
+    this.updatePagedCourses();
   }
 
   onClick(course: Course) : void {
