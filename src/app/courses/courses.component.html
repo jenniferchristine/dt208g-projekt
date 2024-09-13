@@ -37,7 +37,7 @@
                     </a>
                 </td>
                 <td class="btn-cell">
-                    <button [ngClass]="{'odd-btns': i % 2 === 0}" (click)="onClick(course.courseCode)">
+                    <button [ngClass]="{'odd-btns': i % 2 === 0}" (click)="onClick(course)">
                         <span class="material-symbols-outlined">
                         {{ actionType === 'add' ? "add_task" : 'delete' }}
                         </span>
