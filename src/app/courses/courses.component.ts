@@ -28,10 +28,14 @@ export class CoursesComponent implements OnInit {
   constructor(private coursePostService: CourseService) { }
 
   ngOnInit() : void {
-    this.loadCourses();
+    if (this.actionType === 'add') {
+      this.loadAPIResult();
+    } else if (this.actionType === 'delete') {
+      this.loadLocalStorage();
+    }
   }
 
-  private loadCourses() : void {
+  private loadAPIResult() : void {
     this.coursePostService.getPosts().subscribe((data: Course[]) => {
       this.coursePost = data;
       this.filteredCourses = data;
