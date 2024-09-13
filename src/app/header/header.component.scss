@@ -7,7 +7,7 @@ header {
     box-sizing: border-box;
     
     .header-holder {
-        @include width(1280px, 98%);
+        @include width(98%, 1280px);
         @include align(flex, space-between, center);
     }
 
@@ -27,7 +27,7 @@ header {
 
     ul {
         @include align(flex, center, center);
-        @include width(1280px, 98%);
+        @include width(98%, 1280px);
         list-style: none;
         padding: 0; 
      }

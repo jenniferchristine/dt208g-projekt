@@ -3,7 +3,7 @@
 .wrapper {
     @include align(flex, center, center);
     flex-direction: column;
-    @include width(1280px, 100%);
+    @include width(100%, 1280px);
 }
 
 .subheader {
@@ -14,16 +14,13 @@
     margin-bottom: 3em;
 
     div { @include align(flex, center, center); gap: 3em; }
-    input, select { width: 100%; height: 40px; box-sizing: border-box; border: none; }
     h1 { color: $brightest-color; }
+    input, select { width: 100%; height: 40px; box-sizing: border-box; border: none; }
+    input::placeholder { color: lighten($primary-color, 15%); }
 
     input[type="text"], select {
         font-size: 16px;
         padding-left: 0.5em;
-        color: lighten($primary-color, 15%);
-    }
-
-    input::placeholder {
         color: lighten($primary-color, 15%);
     }
 }
@@ -87,7 +84,7 @@ table {
 
  .pages {
     @include align(flex, space-between, center);
-    @include width(1280px, 95%);
+    @include width(100%, 1280px);
 }
 
 .pages > div {
@@ -108,4 +105,8 @@ table {
         background: none;
         padding: 0;
     }
+}
+
+@media (max-width: 600px) {
+
 }

@@ -16,7 +16,7 @@ footer {
     }
 
     .content-holder {
-        @include width(1280px, 95%);
+        @include width(95%, 1280px);
         @include align(flex, center, center);
         gap: 13em; 
         padding: 2.5em 0;
