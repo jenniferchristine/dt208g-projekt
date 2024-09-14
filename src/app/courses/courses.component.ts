@@ -36,11 +36,10 @@ export class CoursesComponent implements OnInit {
 
   /* bestämmer hur och när komponent ska initaliseras */
   ngOnInit(): void {
-    /* console.log("actionType:", this.actionType); */
-
     if (this.actionType === 'add') { // actiontype för kurs-sida
       this.heading = "Hitta kurser"
       this.loadAPIResult();
+
     } else if (this.actionType === 'delete') { // actiontype för ramschema-sida
       this.heading = "Mitt ramschema";
       this.loadLocalStorage();
@@ -69,23 +68,18 @@ export class CoursesComponent implements OnInit {
 
   /* filtrerar kurser utifrån söktext */
   searchTable(): void {
-    console.log("Söktext:", this.searchText);
-
     this.filteredCourses = this.coursePost.filter(course => // ny array för de som uppfyller villkor
       course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // kontroll om name innehåller söktext
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // ignorerar stora små bokstäver
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
 
-    console.log("Antal kurser efter sökning:", this.filteredCourses.length);
     this.currentPage = 1; // nollställer aktuell sida till 1
     this.updatePagedCourses();
   }
 
   /* filtrerar utifrån ämne */
   filterBySubject(): void {
-    console.log("Valt ämne:", this.selectedSubjects);
-
     if (this.selectedSubjects) {
       this.filteredCourses = this.coursePost.filter(course => // filtermetod som skapar ny array med de som matchar ämne
         course.subject === this.selectedSubjects // kontroll
@@ -93,7 +87,6 @@ export class CoursesComponent implements OnInit {
     } else {
       this.filteredCourses = this.coursePost;
     }
-    console.log("Antal kurser efter ämnesfiltrering:", this.filteredCourses.length);
     this.currentPage = 1;
     this.updatePagedCourses();
   }
