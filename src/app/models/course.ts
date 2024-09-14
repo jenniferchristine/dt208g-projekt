@@ -1,3 +1,5 @@
+/* interface för course */
+
 export class Course {
     courseCode!: string;
     subjectCode!: string;
