@@ -7,16 +7,21 @@
 }
 
 .subheader {
+    @include boxspace(1em 2em 2em 3em, border-box);
     background-color: $deviating-bright;
     width: 100%;
-    box-sizing: border-box;
-    padding: 1em 2em 2em 2em;
     margin-bottom: 3em;
 
     div { @include align(flex, center, center); gap: 3em; }
     h1 { color: $brightest-color; }
-    input, select { width: 100%; height: 40px; box-sizing: border-box; border: none; }
+
     input::placeholder { color: lighten($primary-color, 15%); }
+
+    input, select { 
+        @include size(100%, 40px); 
+        box-sizing: border-box; 
+        border: none; 
+    }
 
     input[type="text"], select {
         font-size: 16px;
@@ -26,12 +31,11 @@
 }
 
 .confirmation {
+    @include color($primary-color, $brightest-color);
     position: fixed;
     bottom: 20px; 
     left: 50%;
     z-index: 1000;
-    background-color: $primary-color;
-    color: $brightest-color;
     transform: translateX(-50%);
     font-size: 14px;
     padding: 1em;
@@ -59,19 +63,14 @@ table {
     }
 
     th { 
-        background-color: $deviating-color; 
-        color: $brightest-color; 
+        @include color($deviating-color, $brightest-color);
         text-align: left; 
     }
 
     button { 
-        color: $brightest-color;
-        border: none; 
-        background-color: $deviating-color;
-        width: 70px;
-        height: 70px;
-        cursor: pointer;
-        transition: 0.2s ease-in;
+        @include btn(none, 0.2s ease-in, pointer);
+        @include color($deviating-color, $brightest-color);
+        @include size(70px, 70px);
 
         &:hover { background-color: lighten($deviating-color, 8%); }
     }
@@ -138,16 +137,13 @@ table {
 }
 
 @media (max-width: 583px) {
+    h1 { font-size: 18px; }
+    input[type="text"], select { font-size: 14px!important; }
+    table { button { @include size(38px!important, 38px!important); }}
+
     .pages { justify-content: center!important; }
     .hide-if583, .pages-option { display: none!important; }
-    h1 { font-size: 18px; }
     .subheader { margin-bottom: 1.5em!important;}
-
-    input[type="text"], select {
-        font-size: 14px!important;
-    }
-
-    table { button { width: 38px!important; height: 38px!important; }}
 }
 
 @media (max-width: 410px) { .hide-if410 { display: none!important; }}

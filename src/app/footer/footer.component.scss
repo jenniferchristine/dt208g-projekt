@@ -2,9 +2,8 @@
 
 footer {
     @include align(flex, center, center);
+    @include color($primary-color, $brightest-color);
     flex-direction: column;
-    background-color: $primary-color;
-    color: $brightest-color;
     margin-top: 3em;
     font-family: "Instrument Sans", sans-serif; 
     letter-spacing: 1px;
@@ -18,9 +17,8 @@ footer {
     .content-holder {
         @include width(95%, 1280px);
         @include align(flex, center, center);
+        @include boxspace(2.5em 0, border-box);
         gap: 13em; 
-        padding: 2.5em 0;
-        box-sizing: border-box;
         margin-bottom: 2em;
     }
 
