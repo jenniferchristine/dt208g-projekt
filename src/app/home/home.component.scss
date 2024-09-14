@@ -7,8 +7,8 @@
     width: 100%;
 
     .text-holder {
-        @include width(95%, 946px);
-        padding: 4em 0 2em 0;
+        @include width(95%, 900px);
+        padding: 3em 0 1em 0;
 
         h1 { font-size: 24px; margin-bottom: 1em; letter-spacing: 0.5px; }
         p { line-height: 28px; }
@@ -27,7 +27,7 @@
 
 .img-holder {
     @include align(flex, center, center);
-    @include width(98%, 946px);
+    @include width(98%, 900px);
     gap: 3em;
 
     .img {
