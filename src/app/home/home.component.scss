@@ -1,3 +1,51 @@
 @use '../../styles.scss' as *;
 
-h1 {font-weight: 300!important;}
+.wrapper {
+    @include align(flex, center, center);
+    flex-direction: column;
+    width: 100%;
+
+    .text-holder {
+        @include width(98%, 946px);
+        padding: 4em 0 2em 0;
+
+        h1 { font-size: 24px; margin-bottom: 1em; letter-spacing: 0.5px; }
+        p { line-height: 28px; }
+    }
+}
+
+.bg {
+    @include align(flex, center, center);
+    width: 100%;
+    background-color: $deviating-color;
+    padding: 5em;
+    box-sizing: border-box;
+
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; font-weight: 400; margin: -0.8em 0 2.5em 0; }
+}
+
+.img-holder {
+    @include align(flex, center, center);
+    @include width(98%, 946px);
+    gap: 3em;
+
+    .img {
+        background-color: $brightest-color;
+        padding: 1.5em; 
+    }
+
+    button {
+        width: 100%;
+        padding: 0.5em;
+        border: none;
+        background-color: $deviating-bright;
+    }
+
+    .material-symbols-outlined {
+        color: $brightest-color;
+        font-size: 30px;
+    }
+
+    img { width: 100%;}
+}
