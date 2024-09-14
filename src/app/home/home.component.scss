@@ -3,10 +3,11 @@
 .wrapper {
     @include align(flex, center, center);
     flex-direction: column;
+    color: $primary-color;
     width: 100%;
 
     .text-holder {
-        @include width(98%, 946px);
+        @include width(95%, 946px);
         padding: 4em 0 2em 0;
 
         h1 { font-size: 24px; margin-bottom: 1em; letter-spacing: 0.5px; }
@@ -16,10 +17,9 @@
 
 .bg {
     @include align(flex, center, center);
+    @include boxspace(5em, border-box);
     width: 100%;
     background-color: $deviating-color;
-    padding: 5em;
-    box-sizing: border-box;
 
     h1 { font-size: 28px; }
     h2 { font-size: 20px; font-weight: 400; margin: -0.8em 0 2.5em 0; }
@@ -36,10 +36,12 @@
     }
 
     button {
+        @include btn(none, 0.2s ease-in, pointer);
         width: 100%;
         padding: 0.5em;
-        border: none;
         background-color: $deviating-bright;
+
+        &:hover { background-color: darken($deviating-bright, 8%); }
     }
 
     .material-symbols-outlined {
@@ -48,4 +50,13 @@
     }
 
     img { width: 100%;}
+}
+
+@media (max-width: 865px) {
+    .img-holder { flex-direction: column; }
+    .img { width: 100%; }
+}
+
+@media (max-width: 550px) {
+    .bg { padding: 2em!important; }
 }

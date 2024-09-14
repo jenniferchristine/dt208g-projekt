@@ -31,6 +31,17 @@ $brightest-color: lighten($primary-color, 100%);
     height: $height;
 }
 
+@mixin boxspace($padding, $box) {
+    padding: $padding;
+    box-sizing: $box;
+}
+
+@mixin btn($border, $trans, $cursor) {
+    border: $border;
+    transition: $trans;
+    cursor: $cursor;
+}
+
 body {
     @include align(flex, center, center);
     color: $primary-color;
