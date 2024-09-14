@@ -1,3 +1,31 @@
-<div>
+<div class="wrapper">
+
+    <div class="headline">
+        <span class="material-symbols-outlined">
+            sentiment_dissatisfied
+        </span>
+        <h1>404</h1>
+        <h2>Sidan kunde inte hittas</h2>
+    </div>
+
+        <div class="get-to">
+            <div class="click" (click)="navigateTo('home')">
+                <p>Klicka här för att komma tillbaka till startsidan</p>
+            </div>
+
+            <div class="pointer" (click)="navigateTo('find-courses')">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+                <p>Hitta kurser</p>
+            </div>
+
+            <div class="pointer" (click)="navigateTo('schedule')">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+                <p>Ditt ramschema</p>
+            </div>
+        </div>
 
 </div>

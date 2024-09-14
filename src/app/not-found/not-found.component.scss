@@ -1,3 +1,70 @@
 @use '../../styles.scss' as *;
 
-div { }
+.wrapper { 
+    @include align(flex, center, center);
+    flex-direction: column;
+    margin: 3em 0;
+    width: 100%;
+
+    .headline {
+        @include align(flex, center, center);
+        border-radius: 0.2em; 
+        flex-direction: column;
+        line-height: 10px;
+        margin-bottom: 3em;
+        padding: 2em 8em;
+
+        .material-symbols-outlined {
+            font-size: 52px;
+        }
+
+        h1 { font-size: 60px; }
+        h2 { font-size: 20px; margin-top: 1.5em; }
+    }
+
+    .get-to {
+        margin: -1em 0 0 0;
+
+        .click > p{
+            text-decoration: underline;
+            padding-bottom: 1em;
+            cursor: pointer;
+        }
+
+        .click:hover { color: $deviating-color; }
+
+        div {
+            @include align(flex, flex-start, center);
+            margin: -1.5em 0 0 0;
+        }
+
+        .pointer {
+            cursor: pointer;
+
+            &:hover { color: $deviating-color; }
+            p:hover { text-decoration: underline; }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .wrapper { margin: 1em 0!important; }
+    .headline {
+        margin-bottom: 2em!important;
+        padding: 1em 4em!important;
+        line-height: 15px!important;
+
+        .material-symbols-outlined {
+            font-size: 28px!important;
+        }
+
+        h1 { font-size: 42px!important; }
+        h2 { font-size: 16px!important; }
+    }
+
+    .click > p{
+        font-size: 14px!important;
+    }
+
+    .pointer { font-size: 12px!important;}
+}
