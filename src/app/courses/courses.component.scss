@@ -3,7 +3,7 @@
 .wrapper {
     @include align(flex, center, center);
     flex-direction: column;
-    @include width(100%, 1280px);
+    width: 1280px;
 }
 
 .subheader {
@@ -45,22 +45,24 @@ table {
     border-collapse: collapse;
     width: 100%;
     overflow-x: auto!important;
+
     tr:nth-child(odd) td { background-color: lighten($deviating-bright, 15%); }
     .hide-if410, .hide-if583 { display: table-cell; }
+
+    a { color: $primary-color; }
+    th { padding: 0.5em 1em; }
 
     td { 
         background-color: $brightest-color; 
         padding: 0.5em 1em; 
         border-bottom: 0.1px solid rgba(49, 49, 49, 0.027);
     }
-    th { padding: 0.5em 1em; }
+
     th { 
         background-color: $deviating-color; 
         color: $brightest-color; 
         text-align: left; 
     }
-
-    a { color: $primary-color; }
 
     button { 
         color: $brightest-color;
@@ -107,6 +109,10 @@ table {
         background: none;
         padding: 0;
     }
+}
+
+@media (max-width: 1279px) {
+    .wrapper { width: 100%!important;}
 }
 
 @media (max-width: 925px) {
