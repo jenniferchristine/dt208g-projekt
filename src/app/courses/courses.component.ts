@@ -36,6 +36,8 @@ export class CoursesComponent implements OnInit {
 
   /* bestämmer hur och när komponent ska initaliseras */
   ngOnInit() : void {
+    console.log("actionType:", this.actionType);
+
     if (this.actionType === 'add') { // actiontype för kurs-sida
       this.heading = "Hitta kurser"
       this.loadAPIResult();
@@ -67,18 +69,23 @@ export class CoursesComponent implements OnInit {
 
   /* filtrerar kurser utifrån söktext */
   searchTable() : void {
+    console.log("Söktext:", this.searchText);
+
     this.filteredCourses = this.coursePost.filter(course => // ny array för de som uppfyller villkor
       course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // kontroll om name innehåller söktext
       course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // ignorerar stora små bokstäver
       course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
     );
 
+    console.log("Antal kurser efter sökning:", this.filteredCourses.length);
     this.currentPage = 1; // nollställer aktuell sida till 1
     this.updatePagedCourses();
   }
 
   /* filtrerar utifrån ämne */
   filterBySubject() : void {
+    console.log("Valt ämne:", this.selectedSubjects);
+
     if (this.selectedSubjects) {
       this.filteredCourses= this.coursePost.filter(course => // filtermetod som skapar ny array med de som matchar ämne
         course.subject === this.selectedSubjects // kontroll
@@ -86,6 +93,7 @@ export class CoursesComponent implements OnInit {
     } else {
       this.filteredCourses = this.coursePost;
     }
+    console.log("Antal kurser efter ämnesfiltrering:", this.filteredCourses.length);
     this.currentPage = 1;
     this.updatePagedCourses();
   }
@@ -125,20 +133,30 @@ export class CoursesComponent implements OnInit {
 
   /* går till nästa sida av delningen av sidor */
   nextPage() : void {
-    const maxPages = Math.ceil(this.filteredCourses.length / this.pageSize); // beräkna totala antal sidor
+    const maxPages = Math.ceil(this.filteredCourses.length / this.pageSize);
+
+    console.log("Nuvarande sida efter nextPage():", this.currentPage);
+    console.log("Max antal sidor:", maxPages);
+  
     if (this.currentPage < maxPages) {
       this.currentPage++;
       this.updatePagedCourses();
     }
+  
+    console.log("Nuvarande sida efter nextPage():", this.currentPage);
   }
 
  /* går till föregående sida av delningen av sidor */
   previousPage() : void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePagedCourses();
-    }
+  console.log("Nuvarande sida efter previousPage():", this.currentPage);
+  
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.updatePagedCourses();
   }
+
+  console.log("Nuvarande sida efter previousPage():", this.currentPage);
+}
 
   /* sparar kurs i localstorage */
   saveToLocalStorage(course: Course) : void {
@@ -184,10 +202,15 @@ export class CoursesComponent implements OnInit {
       if (this.currentPage > maxPages) {
         this.currentPage = maxPages || 1; // om maxPages är 0, sätt currentPage till 1
       }
-    
+
+      console.log("Antal sidor efter justering:", this.currentPage);
       // beräkna start- och slutindex för den aktuella sidan
       const startIndex = (this.currentPage - 1) * this.pageSize;
       const endIndex = Math.min(startIndex + this.pageSize, this.filteredCourses.length);
+
+      console.log("startIndex:", startIndex);
+      console.log("endIndex:", endIndex);
+      console.log("Totalt filtrerade kurser:", this.filteredCourses.length);
     
       // sätt de kurser som ska visas på aktuell sida
       this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex);
@@ -196,8 +219,8 @@ export class CoursesComponent implements OnInit {
       const endIndex = startIndex + this.pageSize; // ...och slutindex
       this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex); // uppdateras med det som ligger emellan
       */    
-      console.log('Antal kurser på denna sida:', this.pagedCourses.length);
-      console.log('Kurser på denna sida:', this.pagedCourses);
+      console.log("Antal kurser på denna sida:", this.pagedCourses.length);
+      console.log("Kurser på denna sida:", this.pagedCourses);
     }
   
   
