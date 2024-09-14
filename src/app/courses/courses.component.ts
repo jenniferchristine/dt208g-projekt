@@ -86,11 +86,13 @@ export class CoursesComponent implements OnInit {
     this.updatePagedCourses();
   }
 
+  /* sortera utifrån klickad kolumn */
   sortTable(column: keyof Course) : void {
-    const compare = (a: Course, b: Course): number => {
-      let valueA: string | number = a[column];
+    const compare = (a: Course, b: Course): number => { // jämför a och b
+      let valueA: string | number = a[column]; // om de är siffror konverteras de till number
       let valueB: string | number = b[column];
   
+      /* jämför om de är mindre eller större än */
       if (!isNaN(Number(valueA)) && !isNaN(Number(valueB))) {
         valueA = Number(valueA);
         valueB = Number(valueB);
@@ -100,6 +102,7 @@ export class CoursesComponent implements OnInit {
         valueB = valueB.toLowerCase();
       }
   
+      /* returnerar -1 1 eller 0 för sortering*/
       if (valueA < valueB) {
         return this.sortText === "asc" ? -1 : 1;
       }
@@ -109,18 +112,20 @@ export class CoursesComponent implements OnInit {
       return 0;
     };
 
-    this.filteredCourses.sort(compare);
+    this.filteredCourses.sort(compare); // sorterar filtrerade kurser med jämförelser funktionen
     this.currentPage = 1;
     this.updatePagedCourses();
-    this.sortText = this.sortText === "asc" ? "desc" : "asc";
+    this.sortText = this.sortText === "asc" ? "desc" : "asc"; // växlar ordning varje klick
   }
 
+  /* delar alla kurser i sidor */
   updatePagedCourses() : void {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex);
+    const startIndex = (this.currentPage - 1) * this.pageSize; // beräknar startindex för aktuell sida
+    const endIndex = startIndex + this.pageSize; // ...och slutindex
+    this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex); // uppdateras med det som ligger emellan
   }
 
+  /* går till nästa sida av delningen av sidor */
   nextPage() : void {
     if (this.currentPage * this.pageSize < this.filteredCourses.length) {
       this.currentPage++;
@@ -128,6 +133,7 @@ export class CoursesComponent implements OnInit {
     }
   }
 
+ /* går till föregående sida av delningen av sidor */
   previousPage() : void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -169,24 +175,25 @@ export class CoursesComponent implements OnInit {
     }, 3000);
   }
 
+  /* klick funktion som varierar beroende på action type*/
   onClick(course: Course) : void {
     if (this.actionType === 'add') {
-      this.saveToLocalStorage(course);
+      this.saveToLocalStorage(course); // när kurs ska läggas till skickas denna till funktionen för att spara
     } else if (this.actionType === 'delete') {
-      this.removeFromLocalStorage(course.courseCode);
+      this.removeFromLocalStorage(course.courseCode); // när kurs ska raderas skickas denna till funktionen för att radera
     }
     this.courseAction.emit(course.courseCode);
   }
   
-  get totalCourses() : number {
+  get totalCourses() : number { // returnerar kurser i filtrerade kurser
     return this.filteredCourses.length;
   }
 
-  get startIndex() : number {
+  get startIndex() : number { // beräknar index av vad nuvarande sida börjar på baserat på storlek och sida
     return (this.currentPage - 1) * this.pageSize + 1;
   }
 
-  get endIndex() : number {
-    return Math.min(this.currentPage * this.pageSize, this.filteredCourses.length);
+  get endIndex() : number { // beräknar index av vad nuvarande sida slutar på baserat på storlek och sida
+    return Math.min(this.currentPage * this.pageSize, this.filteredCourses.length); // förhindrar index högre än kurser
   }
 }
