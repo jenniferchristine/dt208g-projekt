@@ -12,13 +12,18 @@ import { RouterLink, RouterLinkActive, NavigationEnd, Router } from '@angular/ro
 export class HeaderComponent {
   isMenuOpen: boolean = false;
 
-  /* prenumerera på router events för att lyssna efter nav förändring */
+  /* prenumerera på router events för att lyssna efter nav förändring (responsiv meny) */
   constructor(private router: Router) {
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) { // vid lyckad navigering...
         this.isMenuOpen = false; // ...stäng menyn
       }
     });
+  }
+
+  navigateTo(page: string) {
+    this.router.navigate([`/${page}`]); // navigerar till parameter
   }
 
   /* toggla responsiv meny */

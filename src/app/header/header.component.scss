@@ -14,6 +14,7 @@ header {
     .logo {
         @include align(flex, flex-start, center);
         gap: 1em; 
+        cursor: pointer;
 
         p { font-size: 32px; font-family: "Instrument Sans", sans-serif; box-sizing: border-box;}
         span { font-size: 58px; box-sizing: border-box;}
