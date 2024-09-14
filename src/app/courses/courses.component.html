@@ -51,7 +51,7 @@
     <div class="pages">
         <div class="pages-option">
             <p>Antal per sida</p>
-            <select [(ngModel)]="pageSize" (change)="updatePagedCourses()">
+            <select [(ngModel)]="pageSize" (change)="currentPage = 1; updatePagedCourses()">
                 <option [value]="10">10</option>
                 <option [value]="20">20</option>
                 <option [value]="50">50</option>
@@ -62,7 +62,7 @@
             <button (click)="previousPage()" [disabled]="currentPage === 1">
                 <span class="material-symbols-outlined">keyboard_arrow_left</span>
             </button>
-            <button (click)="nextPage()" [disabled]="pagedCourses.length < pageSize">
+            <button (click)="nextPage()" [disabled]="endIndex >= totalCourses">
                 <span class="material-symbols-outlined">keyboard_arrow_right</span>
             </button>
         </div>

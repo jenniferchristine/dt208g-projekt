@@ -105,7 +105,7 @@ export class CoursesComponent implements OnInit {
         valueA = valueA.toLowerCase();
         valueB = valueB.toLowerCase();
       }
-  
+
       /* returnerar -1 1 eller 0 för sortering*/
       if (valueA < valueB) {
         return this.sortText === "asc" ? -1 : 1;
@@ -117,14 +117,16 @@ export class CoursesComponent implements OnInit {
     };
 
     this.filteredCourses.sort(compare); // sorterar filtrerade kurser med jämförelser funktionen
+    this.sortText = this.sortText === "asc" ? "desc" : "asc"; // växlar ordning varje klick
+
     this.currentPage = 1;
     this.updatePagedCourses();
-    this.sortText = this.sortText === "asc" ? "desc" : "asc"; // växlar ordning varje klick
   }
 
   /* går till nästa sida av delningen av sidor */
   nextPage() : void {
-    if (this.currentPage * this.pageSize < this.filteredCourses.length) {
+    const maxPages = Math.ceil(this.filteredCourses.length / this.pageSize); // beräkna totala antal sidor
+    if (this.currentPage < maxPages) {
       this.currentPage++;
       this.updatePagedCourses();
     }
@@ -176,9 +178,26 @@ export class CoursesComponent implements OnInit {
 
     /* delar alla kurser i sidor */
     updatePagedCourses() : void {
+      const maxPages = Math.ceil(this.filteredCourses.length / this.pageSize); // beräkna max antal sidor
+
+      // säkerställ att currentPage inte överstiger maxPages
+      if (this.currentPage > maxPages) {
+        this.currentPage = maxPages || 1; // om maxPages är 0, sätt currentPage till 1
+      }
+    
+      // beräkna start- och slutindex för den aktuella sidan
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      const endIndex = Math.min(startIndex + this.pageSize, this.filteredCourses.length);
+    
+      // sätt de kurser som ska visas på aktuell sida
+      this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex);
+      /*
       const startIndex = (this.currentPage - 1) * this.pageSize; // beräknar startindex för aktuell sida
       const endIndex = startIndex + this.pageSize; // ...och slutindex
       this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex); // uppdateras med det som ligger emellan
+      */    
+      console.log('Antal kurser på denna sida:', this.pagedCourses.length);
+      console.log('Kurser på denna sida:', this.pagedCourses);
     }
   
   
