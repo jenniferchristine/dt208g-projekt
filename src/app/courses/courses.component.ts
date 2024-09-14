@@ -135,20 +135,22 @@ export class CoursesComponent implements OnInit {
     }
   }
 
+  /* sparar kurs i localstorage */
   saveToLocalStorage(course: Course) : void {
     let savedCourses = localStorage.getItem("savedCourses");
     let courses = savedCourses ? JSON.parse(savedCourses) : [];
     courses.push(course);
     localStorage.setItem("savedCourses", JSON.stringify(courses));
 
-    this.confirmation = `
-    Kurs ${course.courseName} har lagts till!`;
+    this.confirmation = // visar bekräftelsemeddelande...
+    `Kurs ${course.courseName} har lagts till!`;
 
-    setTimeout(() => {
+    setTimeout(() => { // ...i 3sek
       this.confirmation = "";
     }, 3000);
   }
 
+  /* raderar kurs från localstorage */
   removeFromLocalStorage(courseId: string) : void {
     let savedCourses = localStorage.getItem("savedCourses");
     let courses = savedCourses ? JSON.parse(savedCourses) : [];
