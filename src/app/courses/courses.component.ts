@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'; // angular-moduler och parametrar
 import { FormsModule } from '@angular/forms'; // formulärhantering, ng
 import { CourseService } from '../services/course.service'; // importerar tjänst
+import { LocalStorageService } from '../services/local-storage.service';
 import { Course } from '../models/course' // importerar modell av interface
 import { CommonModule } from '@angular/common'; // ngIf, ngFor
 
@@ -27,7 +28,11 @@ export class CoursesComponent implements OnInit {
   confirmation: string = ""; // bekräftelsemeddelande
   heading: string = "";
 
-  constructor(private coursePostService: CourseService) { } // injektion av service
+  /* injektion services */
+  constructor(
+    private coursePostService: CourseService,
+    private localStorageService: LocalStorageService
+  ) { } 
 
   /* bestämmer hur och när komponent ska initaliseras */
   ngOnInit() : void {
@@ -53,8 +58,7 @@ export class CoursesComponent implements OnInit {
 
   /* privat metod för att hämta data från localstorage */
   private loadLocalStorage() : void {
-    const savedCourses = localStorage.getItem("savedCourses");
-    this.coursePost = savedCourses ? JSON.parse(savedCourses) : [];
+    this.coursePost = this.localStorageService.getSavedCourses();
     this.filteredCourses = this.coursePost;
 
     this.uniqueSubjects = Array.from(new Set(this.coursePost.map((course: Course) => course.subject)));
@@ -118,13 +122,6 @@ export class CoursesComponent implements OnInit {
     this.sortText = this.sortText === "asc" ? "desc" : "asc"; // växlar ordning varje klick
   }
 
-  /* delar alla kurser i sidor */
-  updatePagedCourses() : void {
-    const startIndex = (this.currentPage - 1) * this.pageSize; // beräknar startindex för aktuell sida
-    const endIndex = startIndex + this.pageSize; // ...och slutindex
-    this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex); // uppdateras med det som ligger emellan
-  }
-
   /* går till nästa sida av delningen av sidor */
   nextPage() : void {
     if (this.currentPage * this.pageSize < this.filteredCourses.length) {
@@ -143,11 +140,7 @@ export class CoursesComponent implements OnInit {
 
   /* sparar kurs i localstorage */
   saveToLocalStorage(course: Course) : void {
-    let savedCourses = localStorage.getItem("savedCourses");
-    let courses = savedCourses ? JSON.parse(savedCourses) : [];
-    courses.push(course);
-    localStorage.setItem("savedCourses", JSON.stringify(courses));
-
+    this.localStorageService.saveCourse(course);
     this.confirmation = // visar bekräftelsemeddelande...
     `Kurs ${course.courseName} har lagts till!`;
 
@@ -158,12 +151,8 @@ export class CoursesComponent implements OnInit {
 
   /* raderar kurs från localstorage */
   removeFromLocalStorage(courseId: string) : void {
-    let savedCourses = localStorage.getItem("savedCourses");
-    let courses = savedCourses ? JSON.parse(savedCourses) : [];
-    courses = courses.filter((course: Course) => course.courseCode !== courseId );
-    localStorage.setItem("savedCourses", JSON.stringify(courses));
-
-    this.coursePost = this.coursePost.filter((course: Course) => course.courseCode !== courseId);
+    this.localStorageService.deleteCourse(courseId);
+    this.coursePost = this.coursePost.filter(course => course.courseCode !== courseId);
     this.filteredCourses = this.coursePost;
     this.updatePagedCourses();
 
@@ -184,6 +173,14 @@ export class CoursesComponent implements OnInit {
     }
     this.courseAction.emit(course.courseCode);
   }
+
+    /* delar alla kurser i sidor */
+    updatePagedCourses() : void {
+      const startIndex = (this.currentPage - 1) * this.pageSize; // beräknar startindex för aktuell sida
+      const endIndex = startIndex + this.pageSize; // ...och slutindex
+      this.pagedCourses = this.filteredCourses.slice(startIndex, endIndex); // uppdateras med det som ligger emellan
+    }
+  
   
   get totalCourses() : number { // returnerar kurser i filtrerade kurser
     return this.filteredCourses.length;
