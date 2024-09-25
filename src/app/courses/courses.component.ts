@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'; // angular-moduler och parametrar
+import { Component, OnInit, Input, Output, EventEmitter, input } from '@angular/core'; // angular-moduler och parametrar
 import { FormsModule } from '@angular/forms'; // formulärhantering, ng
 import { CourseService } from '../services/course.service'; // importerar tjänst
 import { LocalStorageService } from '../services/local-storage.service';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common'; // ngIf, ngFor
 })
 export class CoursesComponent implements OnInit {
   @Input() actionType: 'add' | 'delete' = 'add'; // skiljer på sidor/knappar
+  @Input() showTotalPoints: boolean = false;
   @Output() courseAction = new EventEmitter<string>(); // emitterar kurskod
 
   coursePost: Course[] = []; // lagrar kurser
@@ -194,6 +195,10 @@ export class CoursesComponent implements OnInit {
 
   get totalCourses(): number { // returnerar kurser i filtrerade kurser
     return this.filteredCourses.length;
+  }
+
+  get totalPoints(): number {
+    return this.filteredCourses.reduce((sum, course) => sum + (course.points || 0), 0);
   }
 
   get startIndex(): number { // beräknar index av vad nuvarande sida börjar på baserat på storlek och sida

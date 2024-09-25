@@ -48,6 +48,10 @@
         </tbody>
     </table>
 
+    <div *ngIf ="showTotalPoints" class="total-points">
+        <p>Totala poäng: {{ totalPoints }}</p>
+    </div>
+
     <div class="pages">
         <div class="pages-option">
             <p>Antal per sida</p>

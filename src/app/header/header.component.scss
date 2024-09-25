@@ -3,7 +3,7 @@
 header { 
     @include align(flex, center, center);
     flex-direction: column;
-    margin-top: 2em;
+    margin-top: 1em;
     box-sizing: border-box;
     
     .header-holder {
