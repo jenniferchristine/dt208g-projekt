@@ -71,8 +71,7 @@ export class CoursesComponent implements OnInit {
   searchTable(): void {
     this.filteredCourses = this.coursePost.filter(course => // ny array för de som uppfyller villkor
       course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // kontroll om name innehåller söktext
-      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // ignorerar stora små bokstäver
-      course.progression.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
+      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) // -11- och ignorerar stora små bokstäver 
     );
 
     this.currentPage = 1; // nollställer aktuell sida till 1
