@@ -10,9 +10,9 @@ export const routes: Routes = [
     { path: "home", component: HomeComponent },
     { path: "find-courses", component: FindCoursesComponent },
     { path: "schedule", component: ScheduleComponent },
+    { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "404", component: NotFoundComponent }, 
     { path: "**", redirectTo: "404" },
-    { path: "", redirectTo: "/home", pathMatch: "full" }
 ];
 
 @NgModule({
