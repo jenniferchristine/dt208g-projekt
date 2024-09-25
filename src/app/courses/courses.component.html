@@ -1,12 +1,12 @@
 <div class="wrapper">
 
     <div class="subheader">
-        <h1>{{ heading }}</h1>
+        <h1>{{ heading }}</h1> <!-- värde från ts -->
         <div>
-            <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här...">
-            <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()">
+            <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här..."> <!-- tvåvägs databindning för att uppdatera searchTable -->
+            <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()"> <!-- tvåvägs databindning för att uppdatera valt alternativ med event för nytt ämne -->
                 <option value="">Visa alla ämnen</option>
-                <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
+                <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option> <!-- loopar igenom och skapar alternativ -->
             </select>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <table>
         <thead>
             <tr>
-                <th (click)="sortTable('courseName')">Kursnamn</th>
+                <th (click)="sortTable('courseName')">Kursnamn</th> <!--anropar searchTable med courseName som argument (sortering) -->
                 <th class="hide-if410" (click)="sortTable('points')">Poäng</th>
                 <th (click)="sortTable('courseCode')">Kurskod</th>
                 <th class="hide-if583" (click)="sortTable('subject')">Ämne</th>
@@ -25,8 +25,8 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let course of pagedCourses; let i = index">
-                <td>{{ course.courseName }}</td>
+            <tr *ngFor="let course of pagedCourses; let i = index"> <!-- loopar över pagedCourses och skapar ny tr för varje course -->
+                <td>{{ course.courseName }}</td> <!-- namn från course objekt -->
                 <td class="hide-if410">{{ course.points }}</td>
                 <td>{{ course.courseCode }}</td>
                 <td class="hide-if583">{{ course.subject }}</td>
@@ -37,9 +37,9 @@
                     </a>
                 </td>
                 <td class="btn-cell">
-                    <button [ngClass]="{'odd-btns': i % 2 === 0}" (click)="onClick(course)">
+                    <button [ngClass]="{'odd-btns': i % 2 === 0}" (click)="onClick(course)"> <!-- lägger dynamiskt klasser för varannan i scss | onClick för att lägga till -->
                         <span class="material-symbols-outlined">
-                            {{ actionType === 'add' ? "add_task" : 'delete' }}
+                            {{ actionType === 'add' ? "add_task" : 'delete' }} <!-- databindning för att visa ikon beroende på actionType -->
                         </span>
                     </button>
                 </td>
@@ -48,25 +48,25 @@
         </tbody>
     </table>
 
-    <div *ngIf ="showTotalPoints" class="total-points">
-        <p>Totala poäng: {{ totalPoints }}</p>
+    <div *ngIf ="showTotalPoints" class="total-points"> <!-- anropar showTotalPoints för ihopräkning -->
+        <p>Totala poäng: {{ totalPoints }}</p> <!-- visar sammanlagda poäng -->
     </div>
 
     <div class="pages">
         <div class="pages-option">
             <p>Antal per sida</p>
-            <select [(ngModel)]="pageSize" (change)="currentPage = 1; updatePagedCourses()">
+            <select [(ngModel)]="pageSize" (change)="currentPage = 1; updatePagedCourses()"> <!-- tvåvägs databindning att koppla dropdown till pageSize (pageSize uppdateras) -->
                 <option [value]="10">10</option>
                 <option [value]="20">20</option>
                 <option [value]="50">50</option>
             </select>
         </div>
         <div>
-            <p>{{ startIndex }} - {{ endIndex}} av {{ totalCourses }}</p>
-            <button (click)="previousPage()" [disabled]="currentPage === 1">
+            <p>{{ startIndex }} - {{ endIndex}} av {{ totalCourses }}</p> <!-- första och sista kurs på sida av totalt -->
+            <button (click)="previousPage()" [disabled]="currentPage === 1"> <!-- knapp avaktiveras om currentPage är 1 -->
                 <span class="material-symbols-outlined">keyboard_arrow_left</span>
             </button>
-            <button (click)="nextPage()" [disabled]="endIndex >= totalCourses">
+            <button (click)="nextPage()" [disabled]="endIndex >= totalCourses"> <!-- nästa sida -->
                 <span class="material-symbols-outlined">keyboard_arrow_right</span>
             </button>
         </div>
