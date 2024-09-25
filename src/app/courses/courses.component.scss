@@ -42,7 +42,7 @@
     border-radius: 0.2em;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
     
-    p { width: 100%;}
+    p { width: 100%; }
 }
 
 table {
@@ -119,9 +119,7 @@ table {
     p { padding: 0.2em 1em; }
 }
 
-@media (max-width: 1279px) {
-    .wrapper { width: 100%!important;}
-}
+@media (max-width: 1279px) { .wrapper { width: 100%!important; }}
 
 @media (max-width: 925px) {
     table {
@@ -129,11 +127,7 @@ table {
         td, th { padding: 0 0.5em!important;  }
     }
 
-    .pages > div {
-        margin: 0!important;
-        padding: 0!important;
-    }
-
+    .pages > div { margin: 0!important; padding: 0!important; }
     .total-points > p { padding: 0!important; }
 }
 
@@ -151,10 +145,7 @@ table {
         td, th { padding: 0!important;  }
     }
 
-    .pages > div {
-        font-size: 12px!important;
-    }
-
+    .pages > div { font-size: 12px!important; }
     .total-points > p { font-size: 12px!important; }
 }
 
