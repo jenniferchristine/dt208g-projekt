@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common'; // ngIf, ngFor
 })
 export class CoursesComponent implements OnInit {
   @Input() actionType: 'add' | 'delete' = 'add'; // skiljer på sidor/knappar
-  @Input() showTotalPoints: boolean = false;
+  @Input() showTotalPoints: boolean = false; // visa totala poäng
   @Output() courseAction = new EventEmitter<string>(); // emitterar kurskod
 
   coursePost: Course[] = []; // lagrar kurser
@@ -197,8 +197,8 @@ export class CoursesComponent implements OnInit {
     return this.filteredCourses.length;
   }
 
-  get totalPoints(): number {
-    return this.filteredCourses.reduce((sum, course) => sum + (course.points || 0), 0);
+  get totalPoints(): number { // getter som anropas för totala poängen
+    return this.filteredCourses.reduce((sum, course) => sum + (course.points || 0), 0); // returnerar totala poäng från reduce metod
   }
 
   get startIndex(): number { // beräknar index av vad nuvarande sida börjar på baserat på storlek och sida
