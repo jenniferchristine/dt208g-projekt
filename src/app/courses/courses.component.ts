@@ -107,7 +107,7 @@ export class CoursesComponent implements OnInit {
         valueB = valueB.toLowerCase();
       }
 
-      /* returnerar -1 1 eller 0 för sortering*/
+      /* returnerar -1 1 eller 0 för sortering */
       if (valueA < valueB) {
         return this.sortText === "asc" ? -1 : 1;
       }
