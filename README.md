@@ -36,4 +36,4 @@ export class Course {
 }
 ```
 
- [Länk till publicerad webbplats](#)
+ [Länk till publicerad webbplats](https://lynxakademi.netlify.app/home)
