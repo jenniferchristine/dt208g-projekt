@@ -45,7 +45,7 @@ header {
     a { text-decoration: none; color: lighten($primary-color, 15%); }
 
     .current { 
-        background-color: lighten($deviating-bright, 15%);
+        background-color: lighten($deviating-bright, 8%);
         padding: 0.72em 0.7em;
         box-sizing: border-box;
     }

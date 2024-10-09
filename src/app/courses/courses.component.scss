@@ -1,9 +1,11 @@
 @use '../../styles.scss' as *;
 
 .wrapper {
-    @include align(flex, center, center);
+    display: flex;
+    align-items: center;
     flex-direction: column;
     width: 1280px;
+    min-height: 90vh;
 }
 
 .subheader {

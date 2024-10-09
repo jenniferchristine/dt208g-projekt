@@ -1,7 +1,8 @@
 @use '../../styles.scss' as *;
 
 .wrapper {
-    @include align(flex, center, center);
+    display: flex;
+    align-items: center;
     flex-direction: column;
     color: $primary-color;
     width: 100%;
