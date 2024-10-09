@@ -1,10 +1,12 @@
 @use '../../styles.scss' as *;
 
 .wrapper { 
-    @include align(flex, center, center);
+    display: flex;
+    align-items: center;
     flex-direction: column;
-    margin: 3em 0;
+    margin-top: 5em;
     width: 100%;
+    min-height: 55.5vh;
 
     .headline {
         @include align(flex, center, center);
