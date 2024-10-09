@@ -23,7 +23,7 @@ header {
     nav {
         @include align(flex, center, center);
         width: 100%;
-        border-top: 2px solid lighten($deviating-bright, 15%);
+        border-top: 2px solid lighten($deviating-bright, 8%);
         
      }
 
