@@ -67,30 +67,32 @@ export class CoursesComponent implements OnInit {
     this.updatePagedCourses();
   }
 
-  /* filtrerar kurser utifrån söktext */
-  searchTable(): void {
-    this.filteredCourses = this.coursePost.filter(course => // ny array för de som uppfyller villkor
-      course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) || // kontroll om name innehåller söktext
-      course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) // -11- och ignorerar stora små bokstäver 
-    );
+  filterCourses(): void {
+    this.filteredCourses = this.coursePost;
 
-    this.currentPage = 1; // nollställer aktuell sida till 1
-    this.updatePagedCourses();
-  }
-
-  /* filtrerar utifrån ämne */
-  filterBySubject(): void {
-    if (this.selectedSubjects) {
-      this.filteredCourses = this.coursePost.filter(course => // filtermetod som skapar ny array med de som matchar ämne
-        course.subject === this.selectedSubjects // kontroll
+    // filtrerar efter text om nåt är skrivet
+    if (this.searchText) {
+      this.filteredCourses = this.filteredCourses.filter(course => 
+        course.courseName.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()) ||
+        course.courseCode.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())
       );
-    } else {
-      this.filteredCourses = this.coursePost;
     }
+
+    // filtrerar om ämne är valt
+    if (this.selectedSubjects) {
+      this.filteredCourses = this.filteredCourses.filter(course =>
+        course.subject === this.selectedSubjects
+      );
+    }
+
     this.currentPage = 1;
     this.updatePagedCourses();
   }
 
+  /* samlad kod för både ämnesfilter och sök */
+  searchTable(): void { this.filterCourses(); }
+  filterBySubject(): void { this.filterCourses(); } 
+  
   /* sortera utifrån klickad kolumn */
   sortTable(column: keyof Course): void {
     const compare = (a: Course, b: Course): number => { // jämför a och b
@@ -144,11 +146,17 @@ export class CoursesComponent implements OnInit {
 
   /* sparar kurs i localstorage */
   saveToLocalStorage(course: Course): void {
-    this.localStorageService.saveCourse(course);
-    this.confirmation = // visar bekräftelsemeddelande...
-      `Kurs ${course.courseName} har lagts till!`;
+    const existingCourses = this.localStorageService.getSavedCourses(); // hämta sparade kurser
+    const courseAlreadyExists = existingCourses.some(savedCourse => savedCourse.courseCode === course.courseCode); // kontroll för om kurs redan finns
 
-    setTimeout(() => { // ...i 3sek
+    if (courseAlreadyExists) {
+      this.confirmation = `Kurs ${course.courseName} finns redan i ramschemat!`;
+    } else {
+      this.localStorageService.saveCourse(course);
+      this.confirmation = `Kurs ${course.courseName} har lagts till!`;
+    }
+
+    setTimeout(() => {
       this.confirmation = "";
     }, 3000);
   }
