@@ -66,7 +66,21 @@ table {
 
     th { 
         @include color($deviating-color, $brightest-color);
-        text-align: left; 
+        text-align: left;
+
+        &:hover {
+            cursor: pointer; 
+            background-color: $primary-color; 
+            transition: 0.3s ease-in;
+        }
+
+        &:nth-last-child(2), &:last-child {
+            &:hover {
+                cursor: default; 
+                background-color: $deviating-color;
+                transition: none;
+            }
+        }
     }
 
     button { 
