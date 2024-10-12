@@ -90,8 +90,8 @@ export class CoursesComponent implements OnInit {
   }
 
   /* samlad kod för både ämnesfilter och sök */
-  searchTable(): void { this.filterCourses(); }
-  filterBySubject(): void { this.filterCourses(); } 
+  searchTable(): void { this.filterCourses(); } // sökfältet tar upp inmatning
+  filterBySubject(): void { this.filterCourses(); } // ämnesfiltrering tar upp valt ämne
   
   /* sortera utifrån klickad kolumn */
   sortTable(column: keyof Course): void {
