@@ -3,8 +3,8 @@
     <div class="subheader">
         <h1>{{ heading }}</h1> <!-- värde från ts -->
         <div>
-            <input type="text" [(ngModel)]="searchText" (input)="searchTable()" placeholder="Sök kurs här..."> <!-- tvåvägs databindning för att uppdatera searchTable -->
-            <select [(ngModel)]="selectedSubjects" (change)="filterBySubject()"> <!-- tvåvägs databindning för att uppdatera valt alternativ med event för nytt ämne -->
+            <input type="text" [(ngModel)]="searchText" (input)="filterCourses()" placeholder="Sök kurs här..."> <!-- tvåvägs databindning för att uppdatera searchTable -->
+            <select [(ngModel)]="selectedSubjects" (change)="filterCourses()"> <!-- tvåvägs databindning för att uppdatera valt alternativ med event för nytt ämne -->
                 <option value="">Visa alla ämnen</option>
                 <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option> <!-- loopar igenom och skapar alternativ -->
             </select>

@@ -67,6 +67,7 @@ export class CoursesComponent implements OnInit {
     this.updatePagedCourses();
   }
 
+  /* samlad kod för både sökning och ämnesfiltrering */
   filterCourses(): void {
     this.filteredCourses = this.coursePost;
 
@@ -88,10 +89,6 @@ export class CoursesComponent implements OnInit {
     this.currentPage = 1;
     this.updatePagedCourses();
   }
-
-  /* samlad kod för både ämnesfilter och sök */
-  searchTable(): void { this.filterCourses(); } // sökfältet tar upp inmatning
-  filterBySubject(): void { this.filterCourses(); } // ämnesfiltrering tar upp valt ämne
   
   /* sortera utifrån klickad kolumn */
   sortTable(column: keyof Course): void {
@@ -109,7 +106,7 @@ export class CoursesComponent implements OnInit {
         valueB = valueB.toLowerCase();
       }
 
-      /* returnerar -1 1 eller 0 för sortering */
+      /* returnerar -1 1 eller 0 för sortering (returnerar fallande om stigande och tvärtom) */
       if (valueA < valueB) {
         return this.sortText === "asc" ? -1 : 1;
       }
@@ -168,8 +165,7 @@ export class CoursesComponent implements OnInit {
     this.filteredCourses = this.coursePost;
     this.updatePagedCourses();
 
-    this.confirmation = `
-    Kursen är raderad`;
+    this.confirmation = `Kursen är raderad`;
 
     setTimeout(() => {
       this.confirmation = "";
